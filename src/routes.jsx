@@ -1,4 +1,4 @@
-import { Home, Profile, SignIn, SignUp } from "@/pages";
+import { Home } from "@/pages";
 
 export const routes = [
   {
@@ -9,17 +9,17 @@ export const routes = [
   {
     name: "Information about Islam",
     path: "/",
-    // element: <Profile />,
+    element: <Home />,
   },
   {
     name: "Resources",
     path: "/",
-    // element: <SignIn />,
+    element: <Home />,
   },
   {
     name: "Donate",
     path: "/",
-    // element: <SignUp />,
+    element: <Home />,
   },
 
 ];
