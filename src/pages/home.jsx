@@ -14,6 +14,9 @@ import { FingerPrintIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
 import { FeatureCard, TeamCard } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
+import dailyHadith from "/src/assets/dailyHadith.jpg";
+import dailyQuran from "/src/assets/dailyQuran.jpg";
+
 
 export function Home() {
   return (
@@ -59,7 +62,7 @@ export function Home() {
                 <CardHeader floated={false} className="relative h-56">
                   <img
                     alt="Card Image"
-                    src="/img/dailyHadith.jpg"
+                    src={dailyHadith}
                     className="h-full w-full"
                   />
                 </CardHeader>
@@ -82,7 +85,7 @@ export function Home() {
                 <CardHeader floated={false} className="relative h-56">
                   <img
                     alt="Card Image"
-                    src="/img/dailyQuran.jpg"
+                    src={dailyQuran}
                     className="h-full w-full"
                   />
                 </CardHeader>

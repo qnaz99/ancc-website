@@ -85,7 +85,17 @@ Footer.defaultProps = {
   socials: [
     {
       color: "gray",
+      name: "facebook",
+      path: "/",
+    },
+    {
+      color: "gray",
       name: "twitter",
+      path: "/",
+    },
+    {
+      color: "gray",
+      name: "whatsapp",
       path: "/",
     },
     {
