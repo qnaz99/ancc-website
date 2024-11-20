@@ -8,17 +8,17 @@ export const routes = [
   },
   {
     name: "Information about Islam",
-    path: "/",
+    path: "/ancc-website",
     element: <Home />,
   },
   {
     name: "Resources",
-    path: "/",
+    path: "/ancc-website",
     element: <Home />,
   },
   {
     name: "Donate",
-    path: "/",
+    path: "/ancc-website",
     element: <Home />,
   },
 
