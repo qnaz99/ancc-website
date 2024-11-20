@@ -3,12 +3,12 @@ import { Home, Profile, SignIn, SignUp } from "@/pages";
 export const routes = [
   {
     name: "home",
-    path: "/home",
+    path: "/ancc-website",
     element: <Home />,
   },
   {
     name: "Information about Islam",
-    path: "/profile",
+    path: "/",
     // element: <Profile />,
   },
   {

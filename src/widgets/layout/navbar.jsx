@@ -109,7 +109,7 @@ Navbar.defaultProps = {
   brandName: "Al Noor Center of Canada",
   action: (
     <a
-      href="/home"
+      href="/"
       target="_blank"
     >
     </a>
