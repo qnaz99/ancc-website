@@ -11,5 +11,6 @@ export default defineConfig({
     rollupOptions: {
       input: "./index.html", // Explicitly specify the input file
     },
+    target: "es2015",
   },
 });
