@@ -66,7 +66,7 @@ export function Home() {
                 « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلَ كَانَ زَهُوقًا »
               </Typography>
               <Typography variant="lead" color="white" className="opacity-80 text-2xl">
-              "And say, 'Truth has come and falsehood has vanished. Indeed, falsehood is surely bound to vanish.' "
+                "And say, 'Truth has come and falsehood has vanished. Indeed, falsehood is surely bound to vanish.' "
               </Typography>
             </div>
           </div>
@@ -87,9 +87,9 @@ export function Home() {
               />
             ))}
           </div>
-          <div className="mt-32 flex flex-wrap justify-center gap-8">
-            <div className="flex flex-col md:flex-row md:gap-8 w-full">
-              <div className="flex-1 max-w-md">
+          <div className="mt-32 flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-screen-lg">
+              <div className="flex flex-col">
                 <Card className="shadow-lg border shadow-gray-500/10 rounded-lg h-full">
                   <CardHeader floated={false} className="relative h-56">
                     <img
@@ -98,21 +98,21 @@ export function Home() {
                       className="h-full w-full"
                     />
                   </CardHeader>
-                  <CardBody>
+                  <CardBody className="flex flex-col items-center justify-center h-full p-6">
                     <Typography
                       variant="h5"
                       color="blue-gray"
-                      className="mb-4 mt-2 font-bold text-center"
+                      className="mb-4 font-bold text-center"
                     >
                       Hadith of the Day
                     </Typography>
-                    <Typography className="font-normal text-blue-gray-500 text-center">
+                    <Typography className="font-normal text-blue-gray-500 text-center leading-relaxed">
                       {hadithOfTheDay}
                     </Typography>
                   </CardBody>
                 </Card>
               </div>
-              <div className="flex-1 max-w-md mt-8 md:mt-0">
+              <div className="flex flex-col">
                 <Card className="shadow-lg border shadow-gray-500/10 rounded-lg h-full">
                   <CardHeader floated={false} className="relative h-56">
                     <img
@@ -121,18 +121,18 @@ export function Home() {
                       className="h-full w-full"
                     />
                   </CardHeader>
-                  <CardBody>
+                  <CardBody className="flex flex-col items-center justify-center h-full p-6">
                     <Typography
                       variant="h5"
                       color="blue-gray"
-                      className="mb-4 mt-2 font-bold text-center"
+                      className="mb-4 font-bold text-center"
                     >
                       Quran Verse of the Day
                     </Typography>
-                    <Typography className="font-normal text-blue-gray-500 text-center text-2xl">
+                    <Typography className="font-normal text-blue-gray-500 text-center text-2xl leading-relaxed">
                       «{verseOfTheDay}»
                     </Typography>
-                    <Typography className="font-normal text-blue-gray-500 text-center">
+                    <Typography className="font-normal text-blue-gray-500 text-center leading-relaxed">
                       '{verseTranslation}'
                     </Typography>
                   </CardBody>
@@ -183,6 +183,10 @@ export function Home() {
       </div>
     </>
   );
+
+
+
+
 }
 
 export default Home;
