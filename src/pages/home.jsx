@@ -39,7 +39,7 @@ export function Home() {
         setVerseTranslation(data.translations[0].text);
       });
 
-      fetch("https://random-hadith-generator.vercel.app/bukhari/1")
+      fetch("https://random-hadith-generator.vercel.app/bukhari/8")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.data.hadith_english);
@@ -107,7 +107,7 @@ export function Home() {
                       Hadith of the Day
                     </Typography>
                     <Typography className="font-normal text-blue-gray-500 text-center leading-relaxed">
-                      {hadithOfTheDay}
+                      {hadithOfTheDay} - Sahih al-Bukhari Volume 1, Book 2, Number 8
                     </Typography>
                   </CardBody>
                 </Card>
@@ -133,7 +133,7 @@ export function Home() {
                       «{verseOfTheDay}»
                     </Typography>
                     <Typography className="font-normal text-blue-gray-500 text-center leading-relaxed">
-                      '{verseTranslation}'
+                      '{verseTranslation}' [94:6]
                     </Typography>
                   </CardBody>
                 </Card>
