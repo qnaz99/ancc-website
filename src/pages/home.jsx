@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardBody,
@@ -19,6 +19,34 @@ import dailyQuran from "/src/assets/dailyQuran.jpg";
 
 
 export function Home() {
+
+  const [verseOfTheDay, setVerseOfTheDay] = useState("");
+  const [verseTranslation, setVerseTranslation] = useState("");
+  const [hadithOfTheDay, setHadithOfTheDay] = useState("");
+
+  useEffect(() => {
+    fetch("https://api.quran.com/api/v4/quran/verses/uthmani?verse_key=94:6")
+      .then((response) => response.json())
+      .then((data) => {
+        setVerseOfTheDay(data.verses[0].text_uthmani);
+        // console.log(data.verses[0].text_uthmani);
+      });
+
+    fetch("https://api.quran.com/api/v4/quran/translations/20?verse_key=94:6")
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data.translations[0].text);
+        setVerseTranslation(data.translations[0].text);
+      });
+
+      fetch("https://random-hadith-generator.vercel.app/bukhari/1")
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data.data.hadith_english);
+        setHadithOfTheDay(data.data.hadith_english);
+      });
+  }, []);
+
   return (
     <>
       <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
@@ -34,8 +62,11 @@ export function Home() {
               >
                 Al Noor Center of Canada
               </Typography>
-              <Typography variant="lead" color="white" className="opacity-80">
-                Welcome to the website for Al Noor Centre of Canada. This text area should provide a brief description of who we are and what our purpose is.
+              <Typography variant="lead" color="white" className="opacity-80 text-3xl">
+                « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلَ كَانَ زَهُوقًا »
+              </Typography>
+              <Typography variant="lead" color="white" className="opacity-80 text-2xl">
+              "And say, 'Truth has come and falsehood has vanished. Indeed, falsehood is surely bound to vanish.' "
               </Typography>
             </div>
           </div>
@@ -56,52 +87,57 @@ export function Home() {
               />
             ))}
           </div>
-          <div className="mt-32 flex flex-wrap items-center">
-          <div className="mx-auto mt-24 flex w-full justify-center md:w-5/12 lg:mt-0">
-              <Card className="shadow-lg border shadow-gray-500/10 rounded-lg">
-                <CardHeader floated={false} className="relative h-56">
-                  <img
-                    alt="Card Image"
-                    src={dailyHadith}
-                    className="h-full w-full"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography
-                    variant="h5"
-                    color="blue-gray"
-                    className="mb-4 mt-2 font-bold text-center"
-                  >
-                    Hadith of the Day
-                  </Typography>
-                  <Typography className="font-normal text-blue-gray-500">
-                    The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </div>
-            <div className="mx-auto mt-24 flex w-full justify-center md:w-5/12 lg:mt-0">
-              <Card className="shadow-lg border shadow-gray-500/10 rounded-lg">
-                <CardHeader floated={false} className="relative h-56">
-                  <img
-                    alt="Card Image"
-                    src={dailyQuran}
-                    className="h-full w-full"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography
-                    variant="h5"
-                    color="blue-gray"
-                    className="mb-4 mt-2 font-bold text-center"
-                  >
-                    Quran Verse of the Day
-                  </Typography>
-                  <Typography className="font-normal text-blue-gray-500">
-                    The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens.
-                  </Typography>
-                </CardBody>
-              </Card>
+          <div className="mt-32 flex flex-wrap justify-center gap-8">
+            <div className="flex flex-col md:flex-row md:gap-8 w-full">
+              <div className="flex-1 max-w-md">
+                <Card className="shadow-lg border shadow-gray-500/10 rounded-lg h-full">
+                  <CardHeader floated={false} className="relative h-56">
+                    <img
+                      alt="Card Image"
+                      src={dailyHadith}
+                      className="h-full w-full"
+                    />
+                  </CardHeader>
+                  <CardBody>
+                    <Typography
+                      variant="h5"
+                      color="blue-gray"
+                      className="mb-4 mt-2 font-bold text-center"
+                    >
+                      Hadith of the Day
+                    </Typography>
+                    <Typography className="font-normal text-blue-gray-500 text-center">
+                      {hadithOfTheDay}
+                    </Typography>
+                  </CardBody>
+                </Card>
+              </div>
+              <div className="flex-1 max-w-md mt-8 md:mt-0">
+                <Card className="shadow-lg border shadow-gray-500/10 rounded-lg h-full">
+                  <CardHeader floated={false} className="relative h-56">
+                    <img
+                      alt="Card Image"
+                      src={dailyQuran}
+                      className="h-full w-full"
+                    />
+                  </CardHeader>
+                  <CardBody>
+                    <Typography
+                      variant="h5"
+                      color="blue-gray"
+                      className="mb-4 mt-2 font-bold text-center"
+                    >
+                      Quran Verse of the Day
+                    </Typography>
+                    <Typography className="font-normal text-blue-gray-500 text-center text-2xl">
+                      «{verseOfTheDay}»
+                    </Typography>
+                    <Typography className="font-normal text-blue-gray-500 text-center">
+                      '{verseTranslation}'
+                    </Typography>
+                  </CardBody>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
