@@ -57,7 +57,7 @@ export function Home() {
   return (
     <>
       {/* Slider */}
-      <Carousel responsive={responsive} infinite autoPlay autoPlaySpeed={3000}>
+      <Carousel responsive={responsive} infinite autoPlay autoPlaySpeed={5000}>
         {/* Slide 1 */}
         <div className="relative h-screen flex items-center justify-center">
           <div className="absolute top-0 h-full w-full bg-[url('/img/library.jpg')] bg-cover bg-center" />
@@ -67,12 +67,34 @@ export function Home() {
               Al Noor Center of Canada
             </Typography>
             <Typography variant="lead" className="opacity-80 text-3xl">
-              « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلَ كَانَ زَهُوقًا »
+              « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلُ كَانَ زَهُوقًا »
             </Typography>
             <Typography variant="lead" className="opacity-80 text-2xl">
               "And say, 'Truth has come and falsehood has vanished. Indeed,
               falsehood is surely bound to vanish.' "
             </Typography>
+          </div>
+        </div>
+
+        {/* Slide 2 */}
+        <div className="relative h-screen flex items-center justify-center">
+          <div className="absolute top-0 h-full w-full bg-[url('/img/zakat.jpg')] bg-cover bg-center" />
+          <div className="absolute top-0 h-full w-full bg-black/60" />
+          <div className="relative text-center text-white px-4 lg:w-8/12">
+            <Typography variant="h1" className="mb-6 font-black">
+              Support Our Mission
+            </Typography>
+            <Typography variant="lead" className="opacity-80 text-3xl">
+              Help us make a difference in our community.
+            </Typography>
+            <Button
+              variant="gradient"
+              size="lg"
+              className="mt-6"
+              onClick={() => window.location.href = ""}
+            >
+              Click Here to Donate
+            </Button>
           </div>
         </div>
       </Carousel>
