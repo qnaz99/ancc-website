@@ -5,20 +5,36 @@ import {
   CardHeader,
   Typography,
   Button,
-  IconButton,
   Input,
   Textarea,
   Checkbox,
 } from "@material-tailwind/react";
-import { FingerPrintIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
-import { FeatureCard, TeamCard } from "@/widgets/cards";
-import { featuresData, teamData, contactData } from "@/data";
+import { FeatureCard } from "@/widgets/cards";
+import { featuresData } from "@/data";
 import dailyHadith from "/src/assets/dailyHadith.jpg";
 import dailyQuran from "/src/assets/dailyQuran.jpg";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export function Home() {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+      slidesToSlide: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+      slidesToSlide: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1,
+    },
+  };
 
   const [verseOfTheDay, setVerseOfTheDay] = useState("");
   const [verseTranslation, setVerseTranslation] = useState("");
@@ -27,51 +43,41 @@ export function Home() {
   useEffect(() => {
     fetch("https://api.quran.com/api/v4/quran/verses/uthmani?verse_key=94:6")
       .then((response) => response.json())
-      .then((data) => {
-        setVerseOfTheDay(data.verses[0].text_uthmani);
-        // console.log(data.verses[0].text_uthmani);
-      });
+      .then((data) => setVerseOfTheDay(data.verses[0].text_uthmani));
 
     fetch("https://api.quran.com/api/v4/quran/translations/20?verse_key=94:6")
       .then((response) => response.json())
-      .then((data) => {
-        // console.log(data.translations[0].text);
-        setVerseTranslation(data.translations[0].text);
-      });
+      .then((data) => setVerseTranslation(data.translations[0].text));
 
-      fetch("https://random-hadith-generator.vercel.app/bukhari/8")
+    fetch("https://random-hadith-generator.vercel.app/bukhari/8")
       .then((response) => response.json())
-      .then((data) => {
-        // console.log(data.data.hadith_english);
-        setHadithOfTheDay(data.data.hadith_english);
-      });
+      .then((data) => setHadithOfTheDay(data.data.hadith_english));
   }, []);
 
   return (
     <>
-      <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
-        <div className="absolute top-0 h-full w-full bg-[url('/img/library.jpg')] bg-cover bg-center" />
-        <div className="absolute top-0 h-full w-full bg-black/60 bg-cover bg-center" />
-        <div className="max-w-8xl container relative mx-auto">
-          <div className="flex flex-wrap items-center">
-            <div className="ml-auto mr-auto w-full px-4 text-center lg:w-8/12">
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-6 font-black"
-              >
-                Al Noor Center of Canada
-              </Typography>
-              <Typography variant="lead" color="white" className="opacity-80 text-3xl">
-                « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلَ كَانَ زَهُوقًا »
-              </Typography>
-              <Typography variant="lead" color="white" className="opacity-80 text-2xl">
-                "And say, 'Truth has come and falsehood has vanished. Indeed, falsehood is surely bound to vanish.' "
-              </Typography>
-            </div>
+      {/* Slider */}
+      <Carousel responsive={responsive} infinite autoPlay autoPlaySpeed={3000}>
+        {/* Slide 1 */}
+        <div className="relative h-screen flex items-center justify-center">
+          <div className="absolute top-0 h-full w-full bg-[url('/img/library.jpg')] bg-cover bg-center" />
+          <div className="absolute top-0 h-full w-full bg-black/60" />
+          <div className="relative text-center text-white px-4 lg:w-8/12">
+            <Typography variant="h1" className="mb-6 font-black">
+              Al Noor Center of Canada
+            </Typography>
+            <Typography variant="lead" className="opacity-80 text-3xl">
+              « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلَ كَانَ زَهُوقًا »
+            </Typography>
+            <Typography variant="lead" className="opacity-80 text-2xl">
+              "And say, 'Truth has come and falsehood has vanished. Indeed,
+              falsehood is surely bound to vanish.' "
+            </Typography>
           </div>
         </div>
-      </div>
+      </Carousel>
+
+      {/* Features Section */}
       <section className="-mt-32 bg-white px-4 pb-20 pt-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -107,7 +113,8 @@ export function Home() {
                       Hadith of the Day
                     </Typography>
                     <Typography className="font-normal text-blue-gray-500 text-center leading-relaxed">
-                      {hadithOfTheDay} - Sahih al-Bukhari Volume 1, Book 2, Number 8
+                      {hadithOfTheDay} - Sahih al-Bukhari Volume 1, Book 2,
+                      Number 8
                     </Typography>
                   </CardBody>
                 </Card>
@@ -143,6 +150,7 @@ export function Home() {
         </div>
       </section>
 
+      {/* Contact Section */}
       <section className="relative bg-white px-4">
         <div className="container mx-auto">
           <PageTitle section="Contact Us" heading="Want to work with us?">
@@ -183,10 +191,6 @@ export function Home() {
       </div>
     </>
   );
-
-
-
-
 }
 
 export default Home;
