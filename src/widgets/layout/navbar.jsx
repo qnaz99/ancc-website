@@ -22,7 +22,7 @@ export function Navbar({ brandName, routes, action }) {
   }, []);
 
   const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 mix-blend-difference">
       {routes.map(({ name, path, icon, href, target }) => (
         <Typography
           key={name}
@@ -62,11 +62,11 @@ export function Navbar({ brandName, routes, action }) {
   );
 
   return (
-    <MTNavbar color="transparent" className="p-3">
+    <MTNavbar color="white" className="w-full max-w-none p-3 fixed top-0 left-0 z-50 bg-white/70 backdrop-blur-md shadow-md rounded-none">
       <div className="container mx-auto flex items-center justify-between text-white">
         <a href="/"><img src={logo} alt="logo" className="h-16 w-16 mr-2"/></a>
         <Link to="/">
-          <Typography className="mr-4 ml-2 cursor-pointer py-1.5 font-bold">
+          <Typography className="mr-4 ml-2 cursor-pointer py-1.5 font-bold mix-blend-difference">
             {brandName}
           </Typography>
         </Link>
@@ -81,7 +81,7 @@ export function Navbar({ brandName, routes, action }) {
           variant="text"
           size="sm"
           color="white"
-          className="ml-auto text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto text-inherit hover:bg-transparent mix-blend-difference focus:bg-transparent active:bg-transparent lg:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
