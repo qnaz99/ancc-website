@@ -2,7 +2,7 @@ import { Home } from "@/pages";
 
 export const routes = [
   {
-    name: "home",
+    name: "Donate",
     path: "/ancc-website",
     element: <Home />,
   },
@@ -12,13 +12,8 @@ export const routes = [
     element: <Home />,
   },
   {
-    name: "Resources",
-    path: "/ancc-website",
-    element: <Home />,
-  },
-  {
-    name: "Donate",
-    path: "/ancc-website",
+    name: "Subscribe to Updates",
+    path: "/ancc-website#subscribe",
     element: <Home />,
   },
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Card,
   CardBody,
@@ -16,8 +17,21 @@ import dailyHadith from "/src/assets/dailyHadith.jpg";
 import dailyQuran from "/src/assets/dailyQuran.jpg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { PrayerTimesDisplay } from "react-islamic-prayer-times";
 
 export function Home() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [hash]);
+
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -62,17 +76,50 @@ export function Home() {
         <div className="relative h-screen flex items-center justify-center">
           <div className="absolute top-0 h-full w-full bg-[url('/img/library.jpg')] bg-cover bg-center" />
           <div className="absolute top-0 h-full w-full bg-black/60" />
-          <div className="relative text-center text-white px-4 lg:w-8/12">
+          <div className="relative top-10 text-center text-white px-4 lg:w-8/12">
             <Typography variant="h1" className="mb-6 font-black">
               Al Noor Center of Canada
-            </Typography>
-            <Typography variant="lead" className="opacity-80 text-3xl">
+            </Typography >
+            <PrayerTimesDisplay 
+            showSunrise
+            location={{
+              city: "Toronto",
+              country: "Canada"
+            }} 
+            styles={{
+              container: { backgroundColor: "rgba(255, 255, 255, 0.7)" }, // Navbar-like translucent background
+              header: {
+                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                color: "#000", // Default black
+                mixBlendMode: "difference", // Makes text adaptive to the background
+                borderRadius: "12px", // Rounded edges
+                padding: "16px", 
+              },
+              timeBlockContainer: { padding: "10px", gap: "2rem" },
+              timeBlock: {
+                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                color: "#000", // Adaptive color logic can be added here too
+                mixBlendMode: "difference",
+              },
+              time: {
+                color: "#000", // Default adaptive black
+                fontWeight: "bold",
+                mixBlendMode: "difference",
+              },
+              title: {
+                color: "#000", // Default adaptive black
+                mixBlendMode: "difference",
+              },
+            }}
+            
+            />
+            {/* <Typography variant="lead" className="opacity-80 text-3xl">
               « وَقُلْ جَآءَ ٱلْحَقُّ وَزَهَقَ ٱلْبَـٰطِلُ ۚ إِنَّ ٱلْبَـٰطِلُ كَانَ زَهُوقًا »
             </Typography>
             <Typography variant="lead" className="opacity-80 text-2xl">
               "And say, 'Truth has come and falsehood has vanished. Indeed,
               falsehood is surely bound to vanish.' "
-            </Typography>
+            </Typography> */}
           </div>
         </div>
 
@@ -102,7 +149,7 @@ export function Home() {
       {/* Features Section */}
       <section className="-mt-32 bg-white px-4 pb-20 pt-4">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-20">
             {featuresData.map(({ color, title, icon, description }) => (
               <FeatureCard
                 key={title}
@@ -173,17 +220,17 @@ export function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="relative bg-white px-4">
+      <section id="subscribe" className="relative bg-white px-4">
         <div className="container mx-auto">
-          <PageTitle section="Contact Us" heading="Want to work with us?">
-            Complete this form and we will get back to you in 24 hours.
+          <PageTitle section="Subscribe to Newsletter Updates" heading="Want to work with us?">
+            Complete this form and we will email you with updates as they become available.
           </PageTitle>
           <form className="mx-auto w-full mt-12 lg:w-5/12">
             <div className="mb-8 flex gap-8">
               <Input variant="outlined" size="lg" label="Full Name" />
-              <Input variant="outlined" size="lg" label="Email Address" />
+              <Input variant="outlined" size="lg" label="Phone Number" />
             </div>
-            <Textarea variant="outlined" size="lg" label="Message" rows={8} />
+            <Input variant="outlined" size="lg" label="Email Address" />
             <Checkbox
               label={
                 <Typography
@@ -203,7 +250,7 @@ export function Home() {
               containerProps={{ className: "-ml-2.5" }}
             />
             <Button variant="gradient" size="lg" className="mt-8" fullWidth>
-              Send Message
+              Submit
             </Button>
           </form>
         </div>

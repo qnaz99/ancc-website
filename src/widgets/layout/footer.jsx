@@ -48,7 +48,6 @@ export function Footer({ title, description, socials, menus, copyright }) {
                       <Typography
                         as="a"
                         href={item.path}
-                        target="_blank"
                         rel="noreferrer"
                         variant="small"
                         className="mb-2 block font-normal text-blue-gray-500 hover:text-blue-gray-700"
@@ -81,7 +80,7 @@ export function Footer({ title, description, socials, menus, copyright }) {
 Footer.defaultProps = {
   title: "Al Noor Center of Canada",
   description:
-    "Please provide Qareeb text describing your organization to place here.",
+    "Please provide text describing your organization to place here, and links to social media accounts",
   socials: [
     {
       color: "gray",
@@ -117,15 +116,15 @@ Footer.defaultProps = {
     {
       name: "useful links",
       items: [
-        { name: "Homes", path: "/" },
-        { name: "Information about Islam", path: "/" },
+        { name: "Home", path: "/" },
+        { name: "Donate", path: "/" },
         {
-          name: "Resources",
+          name: "Information about Islam",
           path: "/",
         },
         {
-          name: "Donate",
-          path: "/",
+          name: "Subscribe to Updates",
+          path: "/ancc-website#subscribe",
         },
       ],
     },
